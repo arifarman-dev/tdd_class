@@ -4,7 +4,10 @@ Copy this into a `recipe.md` in your project and fill it out.
 
 ## 1. Describe the Problem
 
-_Put or write the user story here. Add any clarifying notes you might have._
+As a user
+So that I can keep track of my music listening
+I want to add tracks I've listened to and see a list of them.
+
 
 ## 2. Design the Class Interface
 
@@ -13,31 +16,31 @@ _Include the initializer, public properties, and public methods with all paramet
 ```python
 # EXAMPLE
 
-class Reminder:
+class MusicTracker:
     # User-facing properties:
-    #   name: string
+    #   music_name: string
 
-    def __init__(self, name):
+    def __init__(self):
         # Parameters:
-        #   name: string
+        #   music_list: list
         # Side effects:
-        #   Sets the name property of the self object
+        #   Creates an empty list
         pass # No code here yet
 
-    def remind_me_to(self, task):
+    def add(self, music_name):
         # Parameters:
-        #   task: string representing a single task
+        #   music_name: string representing a single track
         # Returns:
         #   Nothing
         # Side-effects
-        #   Saves the task to the self object
+        #   Appends the music_name into our list
         pass # No code here yet
 
-    def remind(self):
+    def see(self):
         # Returns:
-        #   A string reminding the user to do the task
+        #   The list of all the music tracks that we added into our list
         # Side-effects:
-        #   Throws an exception if no task is set
+        #   nothing
         pass # No code here yet
 ```
 
@@ -49,27 +52,25 @@ _Make a list of examples of how the class will behave in different situations._
 # EXAMPLE
 
 """
-Given a name and a task
-#remind reminds the user to do the task
+Test if empty list is intialised
 """
-reminder = Reminder("Kay")
-reminder.remind_me_to("Walk the dog")
-reminder.remind() # => "Walk the dog, Kay!"
+music_tracker = MusicTracker()
+music_tracker.music_list # => 0
 
 """
-Given a name and no task
-#remind raises an exception
+Test adding 1 music track to list
 """
-reminder = Reminder("Kay")
-reminder.remind() # raises an error with the message "No task set."
+music_tracker = MusicTracker()
+result = music_tracker.add("Baby Shark")
+result.see() # => ["Baby Shark"]
 
 """
-Given a name and an empty task
-#remind still reminds the user to do the task, even though it looks odd
+Test adding 2 music track to list
 """
-reminder = Reminder("Kay")
-reminder.remind_me_to("")
-reminder.remind() # => ", Kay!"
+music_tracker = MusicTracker()
+result = music_tracker.add("Baby Shark")
+result1 = music_tracker.add("ABC")
+result1.see() # => ["Baby Shark", "ABC"]
 ```
 
 _Encode each example as a test. You can add to the above list as you go._
